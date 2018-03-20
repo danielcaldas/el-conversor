@@ -2,7 +2,6 @@ import bodyParser from 'body-parser';
 import compression from 'compression';
 import cors from 'cors';
 import express from 'express';
-import path from 'path';
 
 const app = express();
 
@@ -20,6 +19,7 @@ app.get('/convert/:number', (request, response) => {
 });
 
 app.listen(app.get('port'), function() {
+    /*eslint no-console: 0*/
     console.log(`node server is running on port with route http://localhost:${app.get('port')}`);
 });
 
