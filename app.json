@@ -1,0 +1,12 @@
+{
+  "name": "El Conversor",
+  "description": "A number to word list converter as a Node backend and React/Redux fronted",
+  "repository": "",
+  "keywords": [
+      "node",
+      "express",
+      "react",
+      "t9"
+  ],
+  "image": "heroku/nodejs"
+}
