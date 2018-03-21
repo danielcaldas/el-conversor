@@ -1,7 +1,20 @@
 import { expandWordsForDigit } from './t9-converter.helper';
 
-// @TODO js-doc
+/**
+ * Function that for a given digit produces all the possible
+ * words from a T9 (predictive text input) prespective.
+ * @param {number|string} number the input to convert to a list of words
+ * @param {Object} options options to pass into conversion
+ * @param {boolean} options.sortWords
+ * @returns {Array.<string>} the generated array of words
+ */
 function convertNumberToWords(number, options = {}) {
+    // edge case: considering that 0 produces no words this will eval
+    // to false and return empty list
+    if (!number) {
+        return [];
+    }
+
     const {
         sortWords = false
     } = options;
