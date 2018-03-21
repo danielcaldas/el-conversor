@@ -48,22 +48,4 @@ function expandWordsForDigit(words = [], digit) {
     return newWords;
 }
 
-// @TODO: split this above 2 functions in file t9.helper.js (unit test this) and this one here
-function convertNumberToWords(number) {
-    const numberStr = `${number}`;
-    const numbers = numberStr.split('');
-
-    return numbers
-        .reduce((acc, digit) => {
-            acc = expandWordsForDigit(acc, digit);
-            
-            return acc;
-        }, [])
-        .sort((a, b) => {
-            if (a < b) return -1;
-            if (a > b) return 1;
-            return 0;
-        });
-}
-
-export { convertNumberToWords };
+export { expandWordsForDigit };
