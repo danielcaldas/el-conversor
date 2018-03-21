@@ -2,7 +2,7 @@ import { expandWordsForDigit } from './t9-converter.helper';
 
 /**
  * Function that for a given digit produces all the possible
- * words from a T9 (predictive text input) prespective.
+ * words from a T9 (predictive text input) perspective.
  * @param {number|string} number the input to convert to a list of words
  * @param {Object} options options to pass into conversion
  * @param {boolean} options.sortWords
