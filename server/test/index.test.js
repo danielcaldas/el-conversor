@@ -6,14 +6,16 @@ const expect = chai.expect;
 
 chai.use(chaiHttp);
 
-describe('index', () => {
+describe('api', () => {
     describe('GET /convert/:number', () => {
         it('it should get result of number conversion', (done) => {
             chai.request(server)
-                .get('/convert/23')
+                .get('/convert/44')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
-                    expect(res.body.data).to.equal('convert 23');
+                    expect(res.body).to.eql({
+                        data: ['gg','gh','gi','hg','hh','hi','ig','ih','ii']
+                    });
                     done();
                 });
         });
