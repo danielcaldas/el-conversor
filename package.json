@@ -7,8 +7,8 @@
     "server:check": "npm run server:test && npm run server:lint",
     "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/src --watch",
     "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",
-    "server:test": "nyc --reporter=text --reporter=html mocha --exit --compilers js:babel-core/register ./server/**/*.test.js",
-    "server:test-watch": "nyc --reporter=html mocha --watch --compilers js:babel-core/register ./server/**/*.test.js",
+    "server:test": "nyc --reporter=text --reporter=html mocha --recursive --exit --compilers js:babel-core/register ./server/test",
+    "server:test-watch": "nyc --reporter=html mocha --recursive --watch --compilers js:babel-core/register ./server/test",
     "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon"
   },
   "keywords": [
