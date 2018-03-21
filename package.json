@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "server:check": "npm run server:test && npm run server:lint",
-    "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/index.js --watch",
+    "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/src --watch",
     "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",
     "server:test": "nyc --reporter=text --reporter=html mocha --exit --compilers js:babel-core/register ./server/**/*.test.js",
-    "start": "NODE_ENV=production pm2 start ./server/index.js --interpreter babel-node --no-daemon"
+    "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon"
   },
   "keywords": [
     "node",
