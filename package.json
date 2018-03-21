@@ -4,8 +4,11 @@
   "description": "A number to word list converter as a Node backend and React/Redux fronted",
   "main": "index.js",
   "scripts": {
-    "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/index.js --watch",
-    "start": "NODE_ENV=production pm2 start ./server/index.js --interpreter babel-node --no-daemon"
+    "server:check": "npm run server:test && npm run server:lint",
+    "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/src --watch",
+    "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",
+    "server:test": "nyc --reporter=text --reporter=html mocha --exit --compilers js:babel-core/register ./server/**/*.test.js",
+    "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon"
   },
   "keywords": [
     "node",
@@ -27,8 +30,13 @@
     "babel-core": "6.26.0",
     "babel-loader": "7.1.4",
     "babel-preset-es2015": "6.24.1",
+    "chai": "4.1.2",
+    "chai-http": "3.0.0",
     "ejs-loader": "0.3.1",
+    "eslint": "4.19.0",
+    "mocha": "5.0.4",
     "nodemon": "1.17.2",
+    "nyc": "11.6.0",
     "pm2": "2.10.1"
   },
   "engines": {
