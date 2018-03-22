@@ -1,6 +1,15 @@
 import React from 'react';
 
+import { ConverterClient } from ''
+
 export default class App extends React.Component {
+    constructor (props) {
+        super(props);
+
+        this.ENVIRONMENT = ENV;
+        this.converterClient = new
+    }
+
     render() {
         return (
             <div>
