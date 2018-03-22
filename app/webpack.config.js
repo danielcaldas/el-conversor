@@ -17,7 +17,7 @@ let plugins = [
         environment: ENVIRONMENT,
         template: 'ejs-loader!app/index.ejs'
     }),
-    new ExtractTextPlugin('app.scss')
+    new ExtractTextPlugin('app.css')
 ];
 
 module.exports = {
@@ -33,8 +33,19 @@ module.exports = {
     },
     module: {
         rules: [{
+                test: /\.css$/,
+                use: [
+                    { loader: 'style-loader', options: { sourceMap: true } },
+                    { loader: 'css-loader', options: { sourceMap: true } }
+                ]
+            },
+            {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+                use: [
+                    { loader: 'style-loader', options: { sourceMap: true } },
+                    { loader: 'css-loader', options: { sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } }
+                ]
             },
             {
                 test: /\.jsx?$/,

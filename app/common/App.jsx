@@ -4,9 +4,9 @@ export default class App extends React.Component {
     render() {
         return (
             <div>
-                <h1>El Converser</h1>
+                <h1 className="main-title">El Conversor</h1>
                 <div>
-                    <input placeHolder="Insert number..."></input>
+                    <input placeholder="Insert number..."></input>
                 </div>
                 <section>
                     <h3>Results</h3>
