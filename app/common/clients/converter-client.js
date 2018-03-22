@@ -17,7 +17,9 @@ class ConverterClient {
      * @returns {Promise}
      */
     convert(number) {
-        return this.transport.get(`/convert/${number}`);
+        return this.transport.get(`/convert/${number}`)
+            .then((response) => response && response.data && response.data.data)
+            .catch((err) => {});
     }
 }
 

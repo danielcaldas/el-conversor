@@ -3,25 +3,37 @@ import React from 'react';
 import { ConverterClient } from './clients/converter-client';
 
 export default class App extends React.Component {
-    constructor (props) {
+    constructor(props) {
         super(props);
 
         this.converterClient = new ConverterClient(ENV.API, 10000);
 
         this.state = {
-            input: ''  
+            input: '',
+            results: ''
         };
     }
 
+    /**
+     * Handle keypress to react to "ENTER" key stroke.
+     */
     onHandleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            alert(this.state.input);
+            this.converterClient.convert(this.state.input)
+                .then((data) => {
+                    const results = JSON.stringify(data, null, 2);
+
+                    this.setState({ results });
+                });
         }
     }
 
+    /**
+     * Updates state input data given user input.
+     */
     onChangeInput = (e) => {
-        // numeric values only
-        if (e.target.value.match(/\d/)) {
+        // empty or digits from 1 to 9 only
+        if (e.target.value === '' || e.target.value.match(/^[1-9]*$/)) {
             this.setState({ input: e.target.value });
         }
     }
@@ -41,7 +53,7 @@ export default class App extends React.Component {
                 </div>
                 <section>
                     <h3>Results</h3>
-                    <pre></pre>
+                    <pre>{this.state.results}</pre>
                 </section>
             </div>
         );
