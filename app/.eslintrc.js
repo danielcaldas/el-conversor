@@ -29,8 +29,6 @@ module.exports = {
         "newline-after-var": ["error", "always"],
         "no-nested-ternary": "error",
         "no-useless-constructor": "error",
-        "semi": "error",
-        "require-jsdoc": "error",
-        "valid-jsdoc": "error"
+        "semi": "error"
     }
 };

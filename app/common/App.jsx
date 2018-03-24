@@ -19,7 +19,7 @@ export default class App extends React.Component {
      */
     onHandleKeyPress = (e) => {
         if (e.key === 'Enter') {
-            this.converterClient.convert(this.state.input)
+            this.converterClient.convert(this.state.input, { sort: true, dict: true })
                 .then((data) => {
                     const results = JSON.stringify(data, null, 2);
 
