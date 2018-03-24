@@ -21,7 +21,7 @@ class ConverterClient {
      */
     convert(number, options = {}) {
         return this.transport.get(`/convert/${number}`, { params: options })
-            .then((response) => response && response.data && response.data.data)
+            .then((response) => response && response.data && response.data.words)
             .catch((err) => {});
     }
 }
