@@ -1,4 +1,4 @@
-const LOCAL = {
+const LOCAL = {
     NAME: 'dev',
     API: 'http://localhost:5005'
 };
@@ -8,4 +8,4 @@ const PRODUCTION = {
     API: 'https://el-conversor.herokuapp.com'
 };
 
-module.exports = { LOCAL, PRODUCTION };
+export { LOCAL, PRODUCTION };

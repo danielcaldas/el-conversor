@@ -8,7 +8,7 @@ import './assets/app.scss';
 import App from './common/App';
 
 const app = document.getElementById('app');
-const ENV = window.ENV;
+// const ENV = window.ENV;
 
 ReactDOM.render(
     <Provider store={store}>
