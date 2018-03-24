@@ -35,7 +35,11 @@ module.exports = {
         rules: [
             {
                 test: /\.scss$/,
-                loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+                use: [
+                    { loader: 'style-loader', options: { sourceMap: true } },
+                    { loader: 'css-loader', options: { sourceMap: true } },
+                    { loader: 'sass-loader', options: { sourceMap: true } }
+                ]
             },
             {
                 test: /\.css$/,
@@ -46,7 +50,7 @@ module.exports = {
                 exclude: /node_modules/,
                 loader: 'babel-loader',
                 options: {
-                    presets: ['react', 'es2015'],
+                    presets: ['react', 'es2015', 'stage-2'],
                     plugins: ['react-html-attrs', 'transform-decorators-legacy'],
                 }
             }
