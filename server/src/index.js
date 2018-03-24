@@ -4,6 +4,7 @@ import cors from 'cors';
 import express from 'express';
 
 import { convertNumberToWords } from './t9-converter/t9-converter';
+import { extractRealWordsOnly } from './dictionary/dictionary';
 
 const app = express();
 
@@ -17,14 +18,25 @@ app.get('/api/check', (request, response) => {
 });
 
 /**
- * > curl localhost:5005/api/convert/23
- * > {"data":["ae","be","ce","ad","bd","cd","af","bf","cf"]}
+ * @example
+ * > curl localhost:5005/api/convert/233?dict=true
+ * > {"data":["add","bed","bee"]}
+ *
+ * @param {number} number the never to convert
+ * @param {Object} queryParams
+ * @param {boolean} dict set to true if only words that appear on the dictionary
+ * are requested
  */
 app.get('/api/convert/:number', (request, response) => {
     try {
         const number = request.params.number;
-        // @TODO: sortWords could be exposed to the clients as req parameter
-        const words = convertNumberToWords(number, { sortWords: true });
+        const realWordsOnly = !!(request && request.query && request.query.dict === 'true');
+
+        let words = convertNumberToWords(number, { sortWords: true });
+
+        if (realWordsOnly) {
+            words = extractRealWordsOnly(words);
+        }
 
         response.status(200).send({ data: words });
     } catch (err) {
