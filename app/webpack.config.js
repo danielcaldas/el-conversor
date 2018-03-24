@@ -32,20 +32,14 @@ module.exports = {
         extensions: ['.js', '.jsx', '.scss', '.css']
     },
     module: {
-        rules: [{
-                test: /\.css$/,
-                use: [
-                    { loader: 'style-loader', options: { sourceMap: true } },
-                    { loader: 'css-loader', options: { sourceMap: true } }
-                ]
-            },
+        rules: [
             {
                 test: /\.scss$/,
-                use: [
-                    { loader: 'style-loader', options: { sourceMap: true } },
-                    { loader: 'css-loader', options: { sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
-                ]
+                loader: ExtractTextPlugin.extract('css-loader!sass-loader')
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader!css-loader')
             },
             {
                 test: /\.jsx?$/,
