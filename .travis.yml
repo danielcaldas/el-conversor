@@ -4,4 +4,7 @@ node_js:
 install:
     - npm install
 script:
-    - npm run server:check
+    - npm run check
+    - npm run client:dist
+deploy:
+    skip_cleanup: true
