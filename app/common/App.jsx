@@ -1,16 +1,19 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import { ConverterClient } from './clients/converter-client';
+import { convertNumberToWord } from './app.actions';
 
+@connect((store) => {
+    return {
+        app: store
+    }
+})
 export default class App extends React.Component {
     constructor(props) {
         super(props);
 
-        this.converterClient = new ConverterClient(ENV.API, 10000);
-
         this.state = {
-            input: '',
-            results: ''
+            input: ''
         };
     }
 
@@ -18,13 +21,8 @@ export default class App extends React.Component {
      * Handle keypress to react to "ENTER" key stroke.
      */
     onHandleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.converterClient.convert(this.state.input, { sort: true, dict: true })
-                .then((data) => {
-                    const results = JSON.stringify(data, null, 2);
-
-                    this.setState({ results });
-                });
+        if (e.key === 'Enter' && this.state.input !== '') {
+            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: true }));
         }
     }
 
@@ -32,6 +30,7 @@ export default class App extends React.Component {
      * Updates state input data given user input.
      */
     onChangeInput = (e) => {
+        // @TODO: Allow 0 as well
         // empty or digits from 1 to 9 only
         if (e.target.value === '' || e.target.value.match(/^[1-9]*$/)) {
             this.setState({ input: e.target.value });
@@ -39,6 +38,8 @@ export default class App extends React.Component {
     }
 
     render() {
+        const words = this.props.app.converter.words;
+
         return (
             <div>
                 <h1 className="main-title">El Conversor</h1>
@@ -53,7 +54,7 @@ export default class App extends React.Component {
                 </div>
                 <section>
                     <h3>Results</h3>
-                    <pre>{this.state.results}</pre>
+                    <pre>{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
                 </section>
             </div>
         );
