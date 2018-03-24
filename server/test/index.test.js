@@ -7,10 +7,10 @@ const expect = chai.expect;
 chai.use(chaiHttp);
 
 describe('api', () => {
-    describe('GET /convert/:number', () => {
+    describe('GET /api/convert/:number', () => {
         it('it should get result of number conversion', (done) => {
             chai.request(server)
-                .get('/convert/44')
+                .get('/api/convert/44')
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.eql({

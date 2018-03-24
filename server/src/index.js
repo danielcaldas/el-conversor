@@ -12,15 +12,15 @@ app.use(bodyParser.json());
 app.use(compression());
 app.use(cors());
 
-app.get('/', (request, response) => {
+app.get('/api/check', (request, response) => {
     response.status(200).send('HEALTH CHECK OK');
 });
 
 /**
- * > curl localhost:5005/convert/23
+ * > curl localhost:5005/api/convert/23
  * > {"data":["ae","be","ce","ad","bd","cd","af","bf","cf"]}
  */
-app.get('/convert/:number', (request, response) => {
+app.get('/api/convert/:number', (request, response) => {
     try {
         const number = request.params.number;
         // @TODO: sortWords could be exposed to the clients as req parameter
@@ -33,6 +33,14 @@ app.get('/convert/:number', (request, response) => {
 });
 
 if (!module.parent) {
+    // serve static assets in production
+    if (process.env.NODE_ENV === 'production') {
+        app.use(express.static(`${process.cwd()}/app/dist`));
+        app.get('*', function(request, response) {
+            response.sendFile(`${process.cwd()}/app/dist/index.html`);
+        });
+    }
+
     app.listen(app.get('port'), function() {
         /*eslint no-console: 0*/
         console.log(`node server is running on port with route http://localhost:${app.get('port')}`);
