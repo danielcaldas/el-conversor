@@ -10,6 +10,7 @@
     "client:lint": "eslint --config=./app/.eslintrc.js \"./app/**(!test).js\"",
     "client:test-watch": "jest --config app/jest.config.js --verbose --coverage --watchAll",
     "client:test": "jest --config app/jest.config.js --verbose --coverage",
+    "dev": "npm-run-all --parallel *:dev",
     "server:check": "npm run server:test && npm run server:lint",
     "server:dev": "NODE_ENV=dev nodemon --exec babel-node ./server/src --watch",
     "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",

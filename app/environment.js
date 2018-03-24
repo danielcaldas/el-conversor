@@ -1,11 +1,11 @@
 const LOCAL = {
     NAME: 'dev',
-    API: 'http://localhost:5005'
+    API: 'http://localhost:5005/api'
 };
 
 const PRODUCTION = {
     NAME: 'production',
-    API: 'https://el-conversor.herokuapp.com'
+    API: 'https://el-conversor.herokuapp.com/api'
 };
 
 /*eslint no-undef: 0*/
