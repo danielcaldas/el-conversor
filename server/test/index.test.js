@@ -14,7 +14,7 @@ describe('api', () => {
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.eql({
-                        data: ['gg','gh','gi','hg','hh','hi','ig','ih','ii']
+                        words: ['gg','gh','gi','hg','hh','hi','ig','ih','ii']
                     });
                     done();
                 });
@@ -26,7 +26,7 @@ describe('api', () => {
                 .end((err, res) => {
                     expect(res.status).to.equal(200);
                     expect(res.body).to.eql({
-                        data: ['app', 'asp', 'apr', 'ass', 'css']
+                        words: ['app', 'asp', 'apr', 'ass', 'css']
                     });
                     done();
                 });

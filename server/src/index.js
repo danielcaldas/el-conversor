@@ -14,7 +14,7 @@ app.use(compression());
 app.use(cors());
 
 app.get('/api/check', (request, response) => {
-    response.status(200).send('HEALTH CHECK OK');
+    response.status(200).send({ msg: 'HEALTH CHECK OK' });
 });
 
 /**
@@ -49,9 +49,9 @@ app.get('/api/convert/:number', (request, response) => {
             });
         }
 
-        response.status(200).send({ data: words });
+        response.status(200).send({ words });
     } catch (err) {
-        response.status(400).send({ data: 'Malformed request. Please check your payload.' });
+        response.status(400).send({ msg: 'Malformed request. Please check your payload.' });
     }
 });
 
