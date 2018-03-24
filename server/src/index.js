@@ -23,19 +23,30 @@ app.get('/api/check', (request, response) => {
  * > {"data":["add","bed","bee"]}
  *
  * @param {number} number the never to convert
- * @param {Object} queryParams
+ * @param {Object} query
  * @param {boolean} dict set to true if only words that appear on the dictionary
+ * @param {boolean} sort set to true if we want list of words to be sorted alphabetically
  * are requested
  */
 app.get('/api/convert/:number', (request, response) => {
     try {
         const number = request.params.number;
         const realWordsOnly = !!(request && request.query && request.query.dict === 'true');
+        const sortWords = !!(request && request.query && request.query.sort === 'true');
 
-        let words = convertNumberToWords(number, { sortWords: true });
+        let words = convertNumberToWords(number);
 
         if (realWordsOnly) {
             words = extractRealWordsOnly(words);
+        }
+
+        if (sortWords) {
+            words.sort((a, b) => {
+                if (a < b) return -1;
+                if (a > b) return 1;
+
+                return 0;
+            });
         }
 
         response.status(200).send({ data: words });
