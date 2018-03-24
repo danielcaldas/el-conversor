@@ -5,12 +5,12 @@ import store from './common/store';
 
 import './assets/app.scss';
 
-import App from './common/App';
+import Converter from './converter/Converter';
 
 const app = document.getElementById('app');
 
 ReactDOM.render(
     <Provider store={store}>
-        <App/>
+        <Converter/>
     </Provider>
 , app);

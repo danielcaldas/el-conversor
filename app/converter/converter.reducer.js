@@ -1,4 +1,4 @@
-import { ACTIONS } from './app.const';
+import { ACTIONS } from './converter.const';
 
 const defaultState = {
     fetching: false,

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import converter from './app.reducer';
+import converter from '../converter/converter.reducer';
 
 export default combineReducers({
     converter

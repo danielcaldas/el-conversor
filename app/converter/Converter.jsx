@@ -1,14 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { convertNumberToWord } from './app.actions';
+import { convertNumberToWord } from './converter.actions';
 
 @connect((store) => {
     return {
         app: store
     }
 })
-export default class App extends React.Component {
+export default class Converter extends React.Component {
     constructor(props) {
         super(props);
 
