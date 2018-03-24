@@ -8,4 +8,5 @@ const PRODUCTION = {
     API: 'https://el-conversor.herokuapp.com'
 };
 
-export { LOCAL, PRODUCTION };
+/*eslint no-undef: 0*/
+module.exports = { LOCAL, PRODUCTION };
