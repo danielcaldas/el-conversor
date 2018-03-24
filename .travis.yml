@@ -5,6 +5,3 @@ install:
     - npm install
 script:
     - npm run check
-    - npm run client:dist
-deploy:
-    skip_cleanup: true

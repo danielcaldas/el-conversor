@@ -5,7 +5,7 @@
   "scripts": {
     "check": "npm run server:check && npm run client:check",
     "client:check": "npm run client:lint && npm run client:test",
-    "client:dev": "NODE_ENV=dev webpack-dev-server --optimize-minimize -d --content-base app --config app/webpack.config.js --inline --hot --port 3002",
+    "client:dev": "NODE_ENV=dev webpack-dev-server -d --content-base app --config app/webpack.config.js --inline --hot --port 3002",
     "client:dist": "NODE_ENV=production webpack --config app/webpack.config.js -p",
     "client:lint": "eslint --config=./app/.eslintrc.js \"./app/**(!test).js\"",
     "client:test-watch": "jest --config app/jest.config.js --verbose --coverage --watchAll",
@@ -15,7 +15,8 @@
     "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",
     "server:test": "nyc --reporter=text --reporter=html mocha --recursive --exit --compilers js:babel-core/register ./server/test",
     "server:test-watch": "nyc --reporter=html mocha --recursive --watch --compilers js:babel-core/register ./server/test",
-    "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon"
+    "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon",
+    "postinstall": "npm run client:dist"
   },
   "keywords": [
     "node",
