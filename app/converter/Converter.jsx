@@ -5,7 +5,7 @@ import Spinner from '../components/spinner/Spinner';
 import InputArea from '../components/input-area/InputArea';
 import WordsList from '../components/words-list/WordsList';
 import FooterInfo from '../components/footer-info/FooterInfo';
-import { convertNumberToWord } from './converter.actions';
+import { convertNumberToWord, toggleConverterOption } from './converter.actions';
 import { OPTIONS } from './converter.const';
 @connect((store) => {
     return {
@@ -17,11 +17,7 @@ export default class Converter extends React.Component {
         super(props);
 
         this.state = {
-            input: '',
-            options: {
-                sort: false,
-                dict: false
-            }
+            input: ''
         };
     }
 
@@ -30,7 +26,7 @@ export default class Converter extends React.Component {
      */
     convert = () => {
         if (this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, this.state.options));
+            this.props.dispatch(convertNumberToWord(this.state.input, this.props.app.converter.options));
         }
     }
 
@@ -59,11 +55,7 @@ export default class Converter extends React.Component {
      * @param {string} option ID of the option to toggle.
      */
     onToggleOption = (option) => {
-        const newOptionValue = !this.state.options[option];
-
-        this.setState({
-            options: { ...this.state.options, [option]: newOptionValue }
-        });
+        this.props.dispatch(toggleConverterOption(this.props.app.converter.options, option));
     }
 
     render() {
@@ -71,7 +63,7 @@ export default class Converter extends React.Component {
         const loading = this.props.app.converter.fetching;
         const options = OPTIONS.map((opt) => ({
             ...opt,
-            checked: this.state.options[opt.id]
+            checked: this.props.app.converter.options[opt.id]
         }), []);
 
         return (

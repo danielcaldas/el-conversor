@@ -3,7 +3,11 @@ import { ACTIONS } from './converter.const';
 const defaultState = {
     fetching: false,
     error: null,
-    words: null
+    words: null,
+    options: {
+        sort: false,
+        dict: false
+    }
 };
 
 export default function reducer(state = defaultState, action) {
@@ -19,7 +23,12 @@ export default function reducer(state = defaultState, action) {
         case ACTIONS.CONVERT_FULFILLED: {
             const words = action.payload;
 
-            return { fetching: false, error: null, words };
+            return { ...state, fetching: false, error: null, words };
+        }
+        case ACTIONS.TOGGLE_CONVERTER_OPTION: {
+            const options = action.payload;
+
+            return { ...state, options };
         }
     }
 
