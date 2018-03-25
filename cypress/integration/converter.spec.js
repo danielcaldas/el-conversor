@@ -2,11 +2,13 @@
 const SANDBOX_URL = Cypress.env('SANDBOX_URL');
 
 const HeaderPO = require('../page-objects/header.po');
+const WordsListPO = require('../page-objects/words-list.po');
 const FooterInfoPO = require('../page-objects/footer-info.po');
 
 describe('Converter e2e tests', function () {
   before(function () {
     this.footerInfoPO = new FooterInfoPO();
+    this.wordsListPO = new WordsListPO();
     this.headerPO = new HeaderPO();
 
     cy.visit(SANDBOX_URL);
@@ -41,21 +43,36 @@ describe('Converter e2e tests', function () {
           .clear()
           .type('233{enter}');
 
-        // @TODO: Check results area
+        this.wordsListPO.getNWord(1)
+          .should('have.text', 'aee');
+        this.wordsListPO.getNWord(2)
+          .should('have.text', 'bee');
+        this.wordsListPO.getNWord(3)
+          .should('have.text', 'cee');
       });
 
       it('should sort alpha', function () {
         this.headerPO.getSortCheck().click();
         this.headerPO.getConvertBtn().click();
 
-        // @TODO: Check results area
+        this.wordsListPO.getNWord(1)
+          .should('have.text', 'add');
+        this.wordsListPO.getNWord(2)
+          .should('have.text', 'ade');
+        this.wordsListPO.getNWord(3)
+          .should('have.text', 'adf');
       });
 
       it('should only return words that match dictionary', function () {
         this.headerPO.getDictCheck().click();
         this.headerPO.getConvertBtn().click();
 
-        // @TODO: Check results area
+        this.wordsListPO.getNWord(1)
+          .should('have.text', 'add');
+        this.wordsListPO.getNWord(2)
+          .should('have.text', 'bed');
+        this.wordsListPO.getNWord(3)
+          .should('have.text', 'bee');
       });
     });
   });
