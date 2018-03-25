@@ -30,7 +30,7 @@ header {
 }
 
 main {
-    background-color: $white;
+    background-color: transparent;
     flex: 1 0 auto;
     margin: ($header-height + 40px) 40px ($footer-height + 40px);
     max-height: 70vh;

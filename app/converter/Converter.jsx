@@ -2,8 +2,9 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/spinner/Spinner';
-import FooterInfo from '../components/footer-info/FooterInfo';
 import InputArea from '../components/input-area/InputArea';
+import WordsList from '../components/words-list/WordsList';
+import FooterInfo from '../components/footer-info/FooterInfo';
 import { convertNumberToWord } from './converter.actions';
 import { OPTIONS } from './converter.const';
 @connect((store) => {
@@ -76,8 +77,7 @@ export default class Converter extends React.Component {
                         onToggleOption={this.onToggleOption}/>
                 </header>
                 <main>
-                    <h3>Results</h3>
-                    <pre className="results_area">{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
+                    <WordsList words={words}/>
                 </main>
                 <footer>
                     <FooterInfo />
