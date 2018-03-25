@@ -1,4 +1,9 @@
 module.exports = {
     verbose: true,
-    rootDir: '.'
+    rootDir: '.',
+    globals: {
+        ENV: {
+            API: 'API'
+        }
+    }
 };
