@@ -5,7 +5,7 @@ import Spinner from '../components/spinner/Spinner';
 import InputArea from '../components/input-area/InputArea';
 import WordsList from '../components/words-list/WordsList';
 import FooterInfo from '../components/footer-info/FooterInfo';
-import { convertNumberToWord, toggleConverterOption } from './converter.actions';
+import { convertNumberToWord, toggleConverterOption, updateInput } from './converter.actions';
 import { OPTIONS } from './converter.const';
 @connect((store) => {
     return {
@@ -13,20 +13,12 @@ import { OPTIONS } from './converter.const';
     }
 })
 export default class Converter extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            input: ''
-        };
-    }
-
     /**
      * Dispatch the convert number to word action.
      */
     convert = () => {
-        if (this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, this.props.app.converter.options));
+        if (this.props.app.converter.input !== '') {
+            this.props.dispatch(convertNumberToWord(this.props.app.converter.input, this.props.app.converter.options));
         }
     }
 
@@ -46,7 +38,7 @@ export default class Converter extends React.Component {
         // @TODO: Allow 0 as well
         // empty or digits from 1 to 9 only
         if (e.target.value === '' || e.target.value.match(/^[1-9]*$/)) {
-            this.setState({ input: e.target.value });
+            this.props.dispatch(updateInput(e.target.value));
         }
     }
 
@@ -72,7 +64,7 @@ export default class Converter extends React.Component {
                 <header>
                     <InputArea
                         inputPlaceHolder={'Convert number... ↵'}
-                        value={this.state.input}
+                        value={this.props.app.converter.input}
                         options={options}
                         onChangeInput={this.onChangeInput}
                         onHandleKeyPress={this.onHandleKeyPress}

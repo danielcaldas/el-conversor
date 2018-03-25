@@ -1,13 +1,14 @@
 import { ACTIONS } from './converter.const';
 
 const defaultState = {
-    fetching: false,
     error: null,
-    words: null,
+    fetching: false,
+    input: '',
     options: {
         sort: false,
         dict: false
-    }
+    },
+    words: null
 };
 
 export default function reducer(state = defaultState, action) {
@@ -29,6 +30,11 @@ export default function reducer(state = defaultState, action) {
             const options = action.payload;
 
             return { ...state, options };
+        }
+        case ACTIONS.UPDATE_INPUT: {
+            const input = action.payload;
+
+            return { ...state, input };
         }
     }
 

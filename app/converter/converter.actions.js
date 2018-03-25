@@ -28,7 +28,19 @@ function toggleConverterOption(currOptions, option) {
     return { type, payload };
 }
 
+/**
+ *
+ * @param {string} newInput new converter input
+ */
+function updateInput(newInput) {
+    const payload = newInput;
+    const type = ACTIONS.UPDATE_INPUT;
+
+    return { type, payload };
+}
+
 export {
     convertNumberToWord,
-    toggleConverterOption
+    toggleConverterOption,
+    updateInput
 };
