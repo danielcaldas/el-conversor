@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
+import Spinner from '../components/spinner/Spinner';
 import { convertNumberToWord } from './converter.actions';
 
 @connect((store) => {
@@ -39,9 +40,11 @@ export default class Converter extends React.Component {
 
     render() {
         const words = this.props.app.converter.words;
+        const loading = this.props.app.converter.fetching;
 
         return (
             <div>
+                <Spinner visible={loading} />
                 <h1 className="main-title">El Conversor</h1>
                 <div>
                     <input
