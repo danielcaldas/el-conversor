@@ -4,7 +4,7 @@
   "description": "A number to word list converter as a Node backend and React/Redux fronted",
   "scripts": {
     "check": "npm run server:check && npm run client:check",
-    "client:check": "npm run client:lint && npm run client:test",
+    "client:check": "npm run client:lint && npm run client:test && npm run client:functional",
     "client:dev": "NODE_ENV=dev webpack-dev-server -d --content-base app --config app/webpack.config.js --inline --hot --port 3002",
     "client:dist": "NODE_ENV=production webpack --config app/webpack.config.js -p",
     "client:functional-local": "export CYPRESS_SANDBOX_URL=http://localhost:3002/ && cypress open",
