@@ -1,9 +1,47 @@
-.main-title {
-    color: #abcabc;
-    font-family: 'Tangerine', serif;
+@import './palette.scss';
+
+$footer-height: 70px;
+$header-height: 100px;
+
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    padding: 0;
+    width: 100%;
 }
 
 body {
+    background-color: $magic-mint;
+    display: flex;
+    flex-direction: column;
     font-family: 'Lato', serif;
     font-size: 32px;
+}
+
+header {
+    background-color: $perl-aqua;
+    height: $header-height;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+
+main {
+    background-color: $white;
+    flex: 1 0 auto;
+    margin: ($header-height + 40px) 40px ($footer-height + 40px);
+    max-height: 70vh;
+    min-height: 50vh;
+    overflow-y: scroll;
+}
+
+footer {
+    background-color: $pastel-red;
+    bottom: 0;
+    height: $footer-height;
+    left: 0;
+    position: fixed;
+    width: 100%;
 }

@@ -23,7 +23,7 @@ export default class Converter extends React.Component {
      */
     onHandleKeyPress = (e) => {
         if (e.key === 'Enter' && this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: true }));
+            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: false }));
         }
     }
 
@@ -44,9 +44,7 @@ export default class Converter extends React.Component {
 
         return (
             <div>
-                <Spinner visible={loading} />
-                <h1 className="main-title">El Conversor</h1>
-                <div>
+                <header>
                     <input
                         type="text"
                         value={this.state.input}
@@ -54,11 +52,15 @@ export default class Converter extends React.Component {
                         onChange={this.onChangeInput}
                         onKeyPress={this.onHandleKeyPress}>
                     </input>
-                </div>
-                <section>
+                </header>
+                <main>
                     <h3>Results</h3>
-                    <pre>{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
-                </section>
+                    <pre className="results_area">{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
+                </main>
+                <footer>
+                    <span>El Conversor</span>
+                </footer>
+                <Spinner visible={loading} />
             </div>
         );
     }
