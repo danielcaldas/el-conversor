@@ -1,6 +1,5 @@
 # el-conversor
 [![Build Status](https://travis-ci.org/danielcaldas/el-conversor.svg?branch=master)](https://travis-ci.org/danielcaldas/el-conversor)
-[![Heroku](https://heroku-badge.herokuapp.com/?app=el-conversor)]
 
 ## A number to word list converter as a Node backend and React/Redux fronted
 
