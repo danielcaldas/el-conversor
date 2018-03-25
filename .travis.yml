@@ -4,6 +4,8 @@ node_js:
 install:
     - npm install
 before_script:
-    - npm start -- --silent &
+    - npm client:http-server -- --silent &
 script:
     - npm run check
+    - npm run client:dist
+    - npm run client:functional
