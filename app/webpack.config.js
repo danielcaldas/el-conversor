@@ -43,8 +43,7 @@ module.exports = {
             },
             {
                 test: /\.(png)$/i,
-                loaders: ['file-loader?name=[name].[ext]&outputPath=/dist/', 'image-webpack-loader?bypassOnDebug'],
-                exclude: path.resolve(__dirname, 'node_modules')
+                loader: 'file-loader'
             },
             {
                 test: /\.jsx?$/,
