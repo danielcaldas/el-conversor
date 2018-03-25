@@ -31,6 +31,7 @@ export default class InputArea extends React.Component {
                 <div className="input-area__options">
                     {this.props.options.map(opt => this._buildOption(opt))}
                 </div>
+                <span className="input-area__convert" onClick={this.props.onClickConvert}>Convert!</span>
             </div>
         );
     }

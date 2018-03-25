@@ -26,11 +26,20 @@ export default class Converter extends React.Component {
     }
 
     /**
+     * Dispatch the convert number to word action.
+     */
+    convert = () => {
+        if (this.state.input !== '') {
+            this.props.dispatch(convertNumberToWord(this.state.input, this.state.options));
+        }
+    }
+
+    /**
      * Handle keypress to react to "ENTER" key stroke.
      */
     onHandleKeyPress = (e) => {
-        if (e.key === 'Enter' && this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, this.state.options));
+        if (e.key === 'Enter') {
+            this.convert();
         }
     }
 
@@ -74,7 +83,8 @@ export default class Converter extends React.Component {
                         options={options}
                         onChangeInput={this.onChangeInput}
                         onHandleKeyPress={this.onHandleKeyPress}
-                        onToggleOption={this.onToggleOption}/>
+                        onToggleOption={this.onToggleOption}
+                        onClickConvert={this.convert}/>
                 </header>
                 <main>
                     <WordsList words={words}/>
