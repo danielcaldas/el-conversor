@@ -39,6 +39,18 @@ function updateInput(newInput) {
     return { type, payload };
 }
 
+/**
+ *
+    toggleConverterOption,
+    updateInput
+ */
+function updateInput(newInput) {
+    const payload = newInput;
+    const type = ACTIONS.UPDATE_INPUT;
+
+    return { type, payload };
+}
+
 export {
     convertNumberToWord,
     toggleConverterOption,
