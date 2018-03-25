@@ -29,21 +29,22 @@ module.exports = {
         filename: 'elconversor.bundle.js'
     },
     resolve: {
-        extensions: ['.js', '.jsx', '.scss', '.css']
+        extensions: ['.js', '.jsx', '.scss', '.css', '.png']
     },
     module: {
         rules: [
             {
                 test: /\.scss$/,
-                use: [
-                    { loader: 'style-loader', options: { sourceMap: true } },
-                    { loader: 'css-loader', options: { sourceMap: true } },
-                    { loader: 'sass-loader', options: { sourceMap: true } }
-                ]
+                loader: ExtractTextPlugin.extract('css-loader!sass-loader')
             },
             {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract('style-loader!css-loader')
+            },
+            {
+                test: /\.(png)$/i,
+                loaders: ['file-loader?name=[name].[ext]&outputPath=/dist/', 'image-webpack-loader?bypassOnDebug'],
+                exclude: path.resolve(__dirname, 'node_modules')
             },
             {
                 test: /\.jsx?$/,

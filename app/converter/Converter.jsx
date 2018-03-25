@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/spinner/Spinner';
+import FooterInfo from '../components/footer-info/FooterInfo';
 import { convertNumberToWord } from './converter.actions';
 
 @connect((store) => {
@@ -58,7 +59,7 @@ export default class Converter extends React.Component {
                     <pre className="results_area">{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
                 </main>
                 <footer>
-                    <span>El Conversor</span>
+                    <FooterInfo/>
                 </footer>
                 <Spinner visible={loading} />
             </div>
