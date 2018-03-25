@@ -1,5 +1,7 @@
 import { expandWordsForDigit } from './t9-converter.helper';
 
+const MAX_LENGTH_ALLOWED = 10;
+
 /**
  * Function that for a given digit produces all the possible
  * words from a T9 (predictive text input) perspective.
@@ -11,6 +13,11 @@ function convertNumberToWords(number) {
     // to false and return empty list
     if (!number) {
         return [];
+    }
+
+    // allow max length of 10 characters
+    if (number.length > 10) {
+        number = number.slice(0, MAX_LENGTH_ALLOWED);
     }
 
     const numberStr = `${number}`;

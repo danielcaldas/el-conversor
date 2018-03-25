@@ -25,6 +25,7 @@ export default class InputArea extends React.Component {
                     className="input-area__input"
                     type="text"
                     value={this.props.value}
+                    maxLength={12}
                     placeholder={this.props.inputPlaceHolder}
                     onChange={this.props.onChangeInput}
                     onKeyPress={this.props.onHandleKeyPress}/>
