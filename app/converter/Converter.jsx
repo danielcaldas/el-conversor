@@ -76,6 +76,7 @@ export default class Converter extends React.Component {
 
         return (
             <div>
+                <Spinner visible={loading} />
                 <header>
                     <InputArea
                         inputPlaceHolder={'Convert number... ↵'}
@@ -92,7 +93,6 @@ export default class Converter extends React.Component {
                 <footer>
                     <FooterInfo />
                 </footer>
-                <Spinner visible={loading} />
             </div>
         );
     }
