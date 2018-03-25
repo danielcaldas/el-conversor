@@ -25,11 +25,7 @@ export default class Converter extends React.Component {
     /**
      * Handle keypress to react to "ENTER" key stroke.
      */
-    onHandleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            this.convert();
-        }
-    }
+    onHandleKeyPress = (e) => e.key === 'Enter' && this.convert();
 
     /**
      * Updates state input data given user input.
@@ -46,9 +42,7 @@ export default class Converter extends React.Component {
      * This function toggles a given option.
      * @param {string} option ID of the option to toggle.
      */
-    onToggleOption = (option) => {
-        this.props.dispatch(toggleConverterOption(this.props.app.converter.options, option));
-    }
+    onToggleOption = (option) => this.props.dispatch(toggleConverterOption(this.props.app.converter.options, option));
 
     render() {
         const words = this.props.app.converter.words;
