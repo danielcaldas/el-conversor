@@ -8,4 +8,17 @@ const ACTIONS = {
     CONVERT_FULFILLED: 'CONVERT_FULFILLED'
 };
 
-export { ACTIONS };
+const OPTIONS = [
+    {
+        id: 'sort',
+        desc: 'Sort words alpha',
+        checked: false
+    },
+    {
+        id: 'dict',
+        desc: 'Dictionary words only',
+        checked: false
+    }
+];
+
+export { ACTIONS, OPTIONS };

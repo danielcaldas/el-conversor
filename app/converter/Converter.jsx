@@ -5,7 +5,7 @@ import Spinner from '../components/spinner/Spinner';
 import FooterInfo from '../components/footer-info/FooterInfo';
 import InputArea from '../components/input-area/InputArea';
 import { convertNumberToWord } from './converter.actions';
-
+import { OPTIONS } from './converter.const';
 @connect((store) => {
     return {
         app: store
@@ -16,7 +16,11 @@ export default class Converter extends React.Component {
         super(props);
 
         this.state = {
-            input: ''
+            input: '',
+            options: {
+                sort: false,
+                dict: false
+            }
         };
     }
 
@@ -25,7 +29,7 @@ export default class Converter extends React.Component {
      */
     onHandleKeyPress = (e) => {
         if (e.key === 'Enter' && this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: true }));
+            this.props.dispatch(convertNumberToWord(this.state.input, this.state.options));
         }
     }
 
@@ -40,27 +44,45 @@ export default class Converter extends React.Component {
         }
     }
 
+    /**
+     * This function toggles a given option.
+     * @param {string} option ID of the option to toggle.
+     */
+    onToggleOption = (option) => {
+        const newOptionValue = !this.state.options[option];
+
+        this.setState({
+            options: { ...this.state.options, [option]: newOptionValue }
+        });
+    }
+
     render() {
         const words = this.props.app.converter.words;
         const loading = this.props.app.converter.fetching;
+        const options = OPTIONS.map((opt) => ({
+            ...opt,
+            checked: this.state.options[opt.id]
+        }), []);
 
         return (
             <div>
                 <header>
                     <InputArea
-                        inputPlaceHolder={'Your number please...'}
+                        inputPlaceHolder={'Convert number... ↵'}
                         value={this.state.input}
+                        options={options}
                         onChangeInput={this.onChangeInput}
-                        onHandleKeyPress={this.onHandleKeyPress}/>
+                        onHandleKeyPress={this.onHandleKeyPress}
+                        onToggleOption={this.onToggleOption}/>
                 </header>
                 <main>
                     <h3>Results</h3>
                     <pre className="results_area">{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
                 </main>
                 <footer>
-                    <FooterInfo/>
+                    <FooterInfo />
                 </footer>
-                <Spinner visible={loading}/>
+                <Spinner visible={loading} />
             </div>
         );
     }
