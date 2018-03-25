@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import Spinner from '../components/spinner/Spinner';
 import FooterInfo from '../components/footer-info/FooterInfo';
+import InputArea from '../components/input-area/InputArea';
 import { convertNumberToWord } from './converter.actions';
 
 @connect((store) => {
@@ -24,7 +25,7 @@ export default class Converter extends React.Component {
      */
     onHandleKeyPress = (e) => {
         if (e.key === 'Enter' && this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: false }));
+            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: true }));
         }
     }
 
@@ -46,13 +47,11 @@ export default class Converter extends React.Component {
         return (
             <div>
                 <header>
-                    <input
-                        type="text"
+                    <InputArea
+                        inputPlaceHolder={'Your number please...'}
                         value={this.state.input}
-                        placeholder="Insert number..."
-                        onChange={this.onChangeInput}
-                        onKeyPress={this.onHandleKeyPress}>
-                    </input>
+                        onChangeInput={this.onChangeInput}
+                        onHandleKeyPress={this.onHandleKeyPress}/>
                 </header>
                 <main>
                     <h3>Results</h3>
@@ -61,7 +60,7 @@ export default class Converter extends React.Component {
                 <footer>
                     <FooterInfo/>
                 </footer>
-                <Spinner visible={loading} />
+                <Spinner visible={loading}/>
             </div>
         );
     }

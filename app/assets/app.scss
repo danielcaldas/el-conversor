@@ -21,6 +21,7 @@ body {
 
 header {
     background-color: $perl-aqua;
+    display: flex;
     height: $header-height;
     left: 0;
     position: fixed;
