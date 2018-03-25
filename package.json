@@ -7,6 +7,9 @@
     "client:check": "npm run client:lint && npm run client:test",
     "client:dev": "NODE_ENV=dev webpack-dev-server -d --content-base app --config app/webpack.config.js --inline --hot --port 3002",
     "client:dist": "NODE_ENV=production webpack --config app/webpack.config.js -p",
+    "client:functional-local": "export CYPRESS_SANDBOX_URL=http://localhost:3002/ && cypress open",
+    "client:functional-remote": "export CYPRESS_SANDBOX_URL=https://el-conversor.herokuapp.com/ && cypress open",
+    "client:functional": "export CYPRESS_SANDBOX_URL=http://localhost:3002 && cypress run",
     "client:lint": "eslint --config=./app/.eslintrc.js \"./app/**(!test).js\"",
     "client:test-watch": "jest --config app/jest.config.js --verbose --coverage --watchAll",
     "client:test": "jest --config app/jest.config.js --verbose --coverage",
@@ -43,6 +46,7 @@
     "redux-promise-middleware": "5.0.0"
   },
   "devDependencies": {
+    "@cypress/webpack-preprocessor": "2.0.0",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "8.2.2",
@@ -57,6 +61,7 @@
     "chai": "4.1.2",
     "chai-http": "3.0.0",
     "css-loader": "0.28.11",
+    "cypress": "2.1.0",
     "ejs-loader": "0.3.1",
     "eslint": "4.19.0",
     "eslint-plugin-promise": "3.7.0",
