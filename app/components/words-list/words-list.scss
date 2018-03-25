@@ -1,0 +1,14 @@
+@import '../../assets/palette.scss';
+
+.words-list {
+    color: $pastel-red;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    &__word {
+        flex: 1 0 25%;
+        padding: 10px;
+    }
+}
+

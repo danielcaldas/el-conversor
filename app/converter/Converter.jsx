@@ -2,8 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import Spinner from '../components/spinner/Spinner';
+import InputArea from '../components/input-area/InputArea';
+import WordsList from '../components/words-list/WordsList';
+import FooterInfo from '../components/footer-info/FooterInfo';
 import { convertNumberToWord } from './converter.actions';
-
+import { OPTIONS } from './converter.const';
 @connect((store) => {
     return {
         app: store
@@ -14,16 +17,29 @@ export default class Converter extends React.Component {
         super(props);
 
         this.state = {
-            input: ''
+            input: '',
+            options: {
+                sort: false,
+                dict: false
+            }
         };
+    }
+
+    /**
+     * Dispatch the convert number to word action.
+     */
+    convert = () => {
+        if (this.state.input !== '') {
+            this.props.dispatch(convertNumberToWord(this.state.input, this.state.options));
+        }
     }
 
     /**
      * Handle keypress to react to "ENTER" key stroke.
      */
     onHandleKeyPress = (e) => {
-        if (e.key === 'Enter' && this.state.input !== '') {
-            this.props.dispatch(convertNumberToWord(this.state.input, { sort: true, dict: true }));
+        if (e.key === 'Enter') {
+            this.convert();
         }
     }
 
@@ -38,27 +54,45 @@ export default class Converter extends React.Component {
         }
     }
 
+    /**
+     * This function toggles a given option.
+     * @param {string} option ID of the option to toggle.
+     */
+    onToggleOption = (option) => {
+        const newOptionValue = !this.state.options[option];
+
+        this.setState({
+            options: { ...this.state.options, [option]: newOptionValue }
+        });
+    }
+
     render() {
         const words = this.props.app.converter.words;
         const loading = this.props.app.converter.fetching;
+        const options = OPTIONS.map((opt) => ({
+            ...opt,
+            checked: this.state.options[opt.id]
+        }), []);
 
         return (
             <div>
                 <Spinner visible={loading} />
-                <h1 className="main-title">El Conversor</h1>
-                <div>
-                    <input
-                        type="text"
+                <header>
+                    <InputArea
+                        inputPlaceHolder={'Convert number... ↵'}
                         value={this.state.input}
-                        placeholder="Insert number..."
-                        onChange={this.onChangeInput}
-                        onKeyPress={this.onHandleKeyPress}>
-                    </input>
-                </div>
-                <section>
-                    <h3>Results</h3>
-                    <pre>{words ? JSON.stringify(words, null, 2) : 'No results'}</pre>
-                </section>
+                        options={options}
+                        onChangeInput={this.onChangeInput}
+                        onHandleKeyPress={this.onHandleKeyPress}
+                        onToggleOption={this.onToggleOption}
+                        onClickConvert={this.convert}/>
+                </header>
+                <main>
+                    <WordsList words={words}/>
+                </main>
+                <footer>
+                    <FooterInfo />
+                </footer>
             </div>
         );
     }

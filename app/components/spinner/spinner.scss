@@ -1,8 +1,12 @@
+@import '../../assets/palette.scss';
+
 /*cool spinners: https://projects.lukehaas.me/css-loaders/*/
 .spinner {
     display: flex;
     align-items: center;
     justify-content: center;
+
+    $loader-background: $pastel-red;
 
     &__loader {
         margin-top: 50vh;
@@ -12,12 +16,12 @@
         width: 11em;
         height: 11em;
         border-radius: 50%;
-        background: #9c5fc3;
-        background: -moz-linear-gradient(left, #9c5fc3 10%, rgba(156, 95, 195, 0) 42%);
-        background: -webkit-linear-gradient(left, #9c5fc3 10%, rgba(156, 95, 195, 0) 42%);
-        background: -o-linear-gradient(left, #9c5fc3 10%, rgba(156, 95, 195, 0) 42%);
-        background: -ms-linear-gradient(left, #9c5fc3 10%, rgba(156, 95, 195, 0) 42%);
-        background: linear-gradient(to right, #9c5fc3 10%, rgba(156, 95, 195, 0) 42%);
+        background: $loader-background;
+        background: -moz-linear-gradient(left, $loader-background 10%, rgba(156, 95, 195, 0) 42%);
+        background: -webkit-linear-gradient(left, $loader-background 10%, rgba(156, 95, 195, 0) 42%);
+        background: -o-linear-gradient(left, $loader-background 10%, rgba(156, 95, 195, 0) 42%);
+        background: -ms-linear-gradient(left, $loader-background 10%, rgba(156, 95, 195, 0) 42%);
+        background: linear-gradient(to right, $loader-background 10%, rgba(156, 95, 195, 0) 42%);
         position: absolute;
         -webkit-animation: load3 1.4s infinite linear;
         animation: load3 1.4s infinite linear;
@@ -29,7 +33,7 @@
     &__loader:before {
         width: 50%;
         height: 50%;
-        background: #9c5fc3;
+        background: transparent;
         border-radius: 100% 0 0 0;
         position: absolute;
         top: 0;
@@ -38,7 +42,7 @@
     }
 
     &__loader:after {
-        background: #fefefe;
+        background: transparent;
         width: 75%;
         height: 75%;
         border-radius: 50%;
