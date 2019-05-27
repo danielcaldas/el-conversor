@@ -1,4 +1,4 @@
-import { PHONE_NUM_LETTER_MAPPING } from './t9.const';
+import { PHONE_NUM_LETTER_MAPPING_V2 } from './t9.const';
 
 /**
  * For a given list of words this function generates new
@@ -8,13 +8,7 @@ import { PHONE_NUM_LETTER_MAPPING } from './t9.const';
  * @returns {Array.<string>} the array of words resultant of the append operation.
  */
 function appendLetterToWords(words, letter) {
-    return words.reduce((acc, word) => {
-        const newWord = `${word}${letter}`;
-
-        acc.push(newWord);
-
-        return acc;
-    }, []);
+    return words.reduce((acc, word) => [...acc, `${word}${letter}`], []);
 }
 
 /**
@@ -31,10 +25,10 @@ function expandWordsForDigit(words = [], digit) {
     }
 
     if (!words.length) {
-        return PHONE_NUM_LETTER_MAPPING[digit]
+        return PHONE_NUM_LETTER_MAPPING_V2[digit];
     }
 
-    const letters = PHONE_NUM_LETTER_MAPPING[digit];
+    const letters = PHONE_NUM_LETTER_MAPPING_V2[digit];
 
     return letters.reduce((acc, letter) => acc.concat(appendLetterToWords(words, letter)), []);
 }

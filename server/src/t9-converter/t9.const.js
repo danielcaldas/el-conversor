@@ -1,4 +1,4 @@
-const PHONE_NUM_LETTER_MAPPING = {
+const PHONE_NUM_LETTER_MAPPING_V2 = {
     1: ['1'],
     2: ['a', 'b', 'c'],
     3: ['e', 'd', 'f'],
@@ -11,5 +11,5 @@ const PHONE_NUM_LETTER_MAPPING = {
 };
 
 export {
-    PHONE_NUM_LETTER_MAPPING
+    PHONE_NUM_LETTER_MAPPING_V2
 };
