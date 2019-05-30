@@ -20,7 +20,7 @@
     "server:lint": "eslint --config=./server/.eslintrc.js \"./server/**(!test).js\"",
     "server:test": "nyc --reporter=text --reporter=html mocha --recursive --exit --compilers js:babel-core/register ./server/test",
     "server:test-watch": "nyc --reporter=html mocha --recursive --watch --compilers js:babel-core/register ./server/test",
-    "start": "NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon",
+    "start": "COMMIT_HASH=\"$(git rev-parse HEAD)\" NODE_ENV=production pm2 start ./server/src --interpreter babel-node --no-daemon",
     "postinstall": "npm run client:dist"
   },
   "keywords": [
