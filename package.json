@@ -32,16 +32,16 @@
   "author": "Daniel Caldas",
   "license": "ISC",
   "dependencies": {
-    "axios": "0.18.0",
+    "axios": "^0.19.0",
     "body-parser": "1.18.2",
     "compression": "1.7.2",
     "cors": "2.8.4",
     "express": "4.16.3",
     "jsonfile": "4.0.0",
     "react": "16.2.0",
-    "react-dom": "16.2.0",
+    "react-dom": "^16.2.1",
     "react-redux": "5.0.7",
-    "redux": "^4.0.0",
+    "redux": "^4.0.1",
     "redux-logger": "3.0.6",
     "redux-promise": "0.5.3",
     "redux-promise-middleware": "5.0.0"
@@ -88,6 +88,6 @@
     "style-loader": "0.20.3",
     "webpack": "4.2.0",
     "webpack-cli": "2.0.12",
-    "webpack-dev-server": "3.1.1"
+    "webpack-dev-server": "^3.1.11"
   }
 }
