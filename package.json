@@ -45,9 +45,7 @@
     "redux": "^4.0.1",
     "redux-logger": "3.0.6",
     "redux-promise": "0.5.3",
-    "redux-promise-middleware": "5.0.0"
-  },
-  "devDependencies": {
+    "redux-promise-middleware": "5.0.0",
     "@cypress/webpack-preprocessor": "2.0.0",
     "babel-cli": "6.26.0",
     "babel-core": "6.26.0",
