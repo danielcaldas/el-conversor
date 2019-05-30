@@ -17,7 +17,10 @@ let plugins = [
         environment: ENVIRONMENT,
         template: 'ejs-loader!app/index.ejs'
     }),
-    new ExtractTextPlugin('app.css')
+    new ExtractTextPlugin('app.css'),
+    new webpack.DefinePlugin({
+        __commitHash__: JSON.stringify(process.env.COMMIT_HASH),
+    })
 ];
 
 module.exports = {
